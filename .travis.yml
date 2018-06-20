@@ -40,7 +40,6 @@ addons:
 
 before_install:
   pushd third-party/java-intelhex-parser;
-  # Build dependencies.
   ./gradlew build;
   popd;
 
