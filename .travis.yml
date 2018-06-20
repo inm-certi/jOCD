@@ -37,7 +37,7 @@ addons:
     branch_pattern: coverity_scan
 
 before_install:
-  cd jocd
-  echo $PWD
+  cd jocd;
+  echo $PWD;
 
 script: if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then ./gradlew usb4java; fi
