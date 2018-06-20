@@ -1,0 +1,46 @@
+notifications:
+  email: true
+language: java
+#sudo: required
+os: linux
+cache: apt
+
+addons:
+  coverity_scan:
+    # GitHub project metadata
+    # ** specific to your project **
+    project:
+      name: inm-certi/jocd
+      version: 1.0.0
+      description: jOCD fork to run coverity
+
+    # Where email notification of build analysis results will be sent
+    notification_email: inm@certi.org.br
+
+    # Commands to prepare for build_command
+    # ** likely specific to your build **
+    build_command_prepend: cov-configure --comptype java;
+
+    # The command that will be added as an argument to "cov-build" to compile your project for analysis,
+    # ** likely specific to your build **
+    build_command: make
+
+    # Pattern to match selecting branches that will run analysis. We recommend leaving this set to 'coverity_scan'.
+    # Take care in resource usage, and consider the build frequency allowances per
+    #   https://scan.coverity.com/faq#frequency
+    branch_pattern: coverity_scan
+
+before_install:
+  - #echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+  - #sudo apt-get -qq update
+  - #sudo apt-get install -y git gperf flex bison libncurses5-dev
+
+#install:
+
+script: if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then ./gradlew usb4java; fi
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "MVmFtMUMKHl96cBosha5w9sK7B28UmiqCwXwQTW/SXJRfN4LX0BXqUn19enFKuCIQTi99CtsoFBc34sXBfs4Pevsmz0T6yphMh6DLwBNYt24mOkb0dVK5wqfzoaDeelgCRN3Y3YLJvHcNkpsZYhbBH4gv9oONI5uzkFPRUQrlnbQkBzdAAdlpZWLkdQy+uLbrqBoaXda8jSR6ADO7rTu5VFQYXoJXvIOeu2MmNTaz58VZYDa7thcZ6h2bQVwi8rgimmuTM38gCTtacqk9J5NpY47xn5yp1UXIjQx7qywiqKWbmS5m+zIrrLBonpFLjPW+AgSrwRG1HTtKR2DOv4nn33HbeZsPfR2h9pvXvwXPpjYZF1jTvP2aozXdoS3ORZwdWUh6DyYIm+3C5WOUbhC8oMmG1wWSJgooKJEmiJD6rNHaK+Y29KdChzkzMTRfMs3Qgp5GxQe2MG33t/YxbF6WtDeNc5ln/LwDDVFiSpnx29eyWSC/AUqG01V7n9UHgYOqQOuXOcyJUH30KYCGJ3LkQ3NSUMj18RpS86Z8ijXxBp5yT7YJjZH2p2F1RLPHO7DMBaSM5vcdSv5KzCNjcp0Fv8g5jA1dysuOirZEK3DUFZK3N9YQNWqVZF14eVqRqmQ66awynobyfnQFvEFuAZO62v/MROn0Cm41oGQ8lnQuJo="
