@@ -38,6 +38,8 @@ addons:
 
 before_install:
   cd jocd;
-  echo $PWD;
+  # Build dependencies.
+  ./gradlew buildAll;
+  ./gradlew clean;
 
 script: if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then ./gradlew usb4java; fi
