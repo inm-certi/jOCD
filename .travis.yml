@@ -25,9 +25,7 @@ addons:
 
     # Commands to prepare for build_command
     # ** likely specific to your build **
-    build_command_prepend: 
-      cov-configure --java
-      cd jocd
+    build_command_prepend:  cov-configure --java
 
     # The command that will be added as an argument to "cov-build" to compile your project for analysis,
     # ** likely specific to your build **
@@ -37,5 +35,9 @@ addons:
     # Take care in resource usage, and consider the build frequency allowances per
     #   https://scan.coverity.com/faq#frequency
     branch_pattern: coverity_scan
+
+before_install:
+  cd jocd
+  echo $PWD
 
 script: if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then ./gradlew usb4java; fi
