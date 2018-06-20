@@ -16,7 +16,7 @@ addons:
     # GitHub project metadata
     # ** specific to your project **
     project:
-      name: inm-certi/jocd
+      name: inm-certi/jOCD
       version: 1.0.0
       description: jOCD fork to run coverity
 
