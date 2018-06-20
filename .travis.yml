@@ -31,18 +31,11 @@ addons:
 
     # The command that will be added as an argument to "cov-build" to compile your project for analysis,
     # ** likely specific to your build **
-    build_command: --fs-capture-search . ./gradlew build
+    build_command: --fs-capture-search . ./gradlew buildAll
 
     # Pattern to match selecting branches that will run analysis. We recommend leaving this set to 'coverity_scan'.
     # Take care in resource usage, and consider the build frequency allowances per
     #   https://scan.coverity.com/faq#frequency
     branch_pattern: coverity_scan
-
-before_install:
-  - #echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
-  - #sudo apt-get -qq update
-  - #sudo apt-get install -y git gperf flex bison libncurses5-dev
-
-#install:
 
 script: if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then ./gradlew usb4java; fi
