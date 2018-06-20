@@ -26,7 +26,7 @@ addons:
     # Commands to prepare for build_command
     # ** likely specific to your build **
     build_command_prepend: 
-      cov-configure --comptype java;
+      cov-configure --java
       cd jocd
 
     # The command that will be added as an argument to "cov-build" to compile your project for analysis,
