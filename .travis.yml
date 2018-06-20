@@ -42,5 +42,6 @@ before_install:
   pushd third-party/java-intelhex-parser;
   ./gradlew build;
   popd;
+  cd jocd;
 
 script: if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then ./gradlew usb4java; fi
