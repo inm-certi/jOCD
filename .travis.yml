@@ -7,9 +7,11 @@ env:
 notifications:
   email: true
 language: java
+install: true
 #sudo: required
 os: linux
 cache: apt
+jdk: oraclejdk8
 
 addons:
   coverity_scan:
@@ -37,9 +39,9 @@ addons:
     branch_pattern: coverity_scan
 
 before_install:
-  cd jocd;
+  pushd third-party/java-intelhex-parser;
   # Build dependencies.
-  ./gradlew buildAll;
-  ./gradlew clean;
+  ./gradlew build;
+  popd;
 
 script: if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then ./gradlew usb4java; fi
