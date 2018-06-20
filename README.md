@@ -1,4 +1,5 @@
 # jOCD
+[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/inm-certi/jocd)
 
 jOCD is multiplatform Java port of the pyOCD (https://github.com/mbedmicro/pyOCD) project. This is a Java library for programming micro:bit board using CMSIS-DAP. Currently the following platforms are supported:
 
